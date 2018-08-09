@@ -43,7 +43,7 @@ function vdsl_php_to_js() {
 	}
 
 	// Map Javascript
-	wp_enqueue_script('localisationmap','/wp-content/plugins/localisation/includes/template/assets/js/map.js', array( 'jquery' ), '1.0.0', true );
+	wp_enqueue_script('localisationmap','/wp-content/plugins/nabi-store-locator/includes/template/assets/js/map.js', array( 'jquery' ), '1.0.0', true );
 	wp_localize_script('localisationmap', 'vdslMapScript', $vars);
 
 }
