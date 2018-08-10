@@ -28,10 +28,10 @@ function vdsl_get_template( $template_name, $args = array(), $tempate_path = '',
 function localisation_sc_form() {
 	return vdsl_get_template( 'search-form.php' );
 }
-add_shortcode( 'vdStoreForm', 'localisation_sc_form' );
+add_shortcode( 'NabiStoreForm', 'localisation_sc_form' );
 
 // Create the Map Shortcode
 function localisation_sc_map() {
 	return vdsl_get_template( 'archive-retailers.php' );
 }
-add_shortcode( 'vdStoreMap', 'localisation_sc_map' );
+add_shortcode( 'NabiStoreMap', 'localisation_sc_map' );
