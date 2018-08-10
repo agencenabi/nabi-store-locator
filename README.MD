@@ -3,7 +3,7 @@
 A basic WordPress Store locator with geolocation, address geocoding and search radius options.
 
 ## Description
-Use shortcode ```[[vdStoreMap]``` to display the Google Map. Use shortcode ```[vdStoreForm]``` to display the search form.
+Use shortcode ```[NabiStoreMap]``` to display the Google Map. Use shortcode ```[NabiStoreForm]``` to display the search form.
 
 ## Installation
 Install from wordpress plugins directory.
