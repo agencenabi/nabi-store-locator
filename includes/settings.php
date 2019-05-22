@@ -24,9 +24,11 @@ function vdsl_create_menu() {
 }
 
 
+// register fields in WP Options (wp-admin/options.php)
 function register_vdsl_settings() {
-	//register fields in WP Options (wp-admin/options.php)
+	
 	register_setting( 'vdsl-settings-group', 'maps_api_key' );
+	register_setting( 'vdsl-settings-group', 'logo_url' );
 }
 
 function vdsl_settings_page() {
@@ -49,6 +51,11 @@ function vdsl_settings_page() {
 			        	<th scope="row"><?php _e('Google Maps API Key', 'vdsl'); ?></th>
 						<td><input type="text" name="maps_api_key" value="<?php echo esc_attr( get_option('maps_api_key') ); ?>" /></td>
 			        </tr>
+			        
+			        <input type="text" id="logo_url" name="theme_wptuts_options[logo]" value="<?php echo esc_url( $wptuts_options['logo'] ); ?>" />
+			        <input id="upload_logo_button" type="button" class="button" value="<?php _e( 'Upload Logo', 'wptuts' ); ?>" />
+			        <span class="description"><?php _e('Upload an image for the banner.', 'wptuts' ); ?></span>
+			        
 			    </table>
 			    <?php submit_button(); ?>
 			</form>
