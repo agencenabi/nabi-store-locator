@@ -15,7 +15,7 @@ jQuery(document).ready(function($) {
 
 	    var clusterStyles = [{
 		    textColor: 'white',
-		    url: vdslMapScript.homeUrl + '/wp-content/plugins/localisation/includes/template/assets/img/m1.png', //TODOcustomize
+		    url: vdslMapScript.pluginsUrl + '/includes/template/assets/img/m1.png', //TODOcustomize
 		    height: 53,
 		    width: 53
 		}];
@@ -79,7 +79,7 @@ jQuery(document).ready(function($) {
         //markers_clusters = new MarkerClusterer(map, [], mcOptions); // TODO: Fix cluster, add an option to turn on and off.
 
         var image = {
-	        	url: vdslMapScript.homeUrl + '/wp-content/plugins/localisation/includes/template/assets/img/pin.png', //TODOcustomize
+	        	url: vdslMapScript.pluginsUrl + '/includes/template/assets/img/pin.png', //TODOcustomize
                 size: new google.maps.Size( sizeX, sizeY ),
                 scaledSize: new google.maps.Size( sizeX, sizeY ),
                 anchor: new google.maps.Point( halfSizeX, sizeY )
@@ -92,7 +92,7 @@ jQuery(document).ready(function($) {
             customMapType = new google.maps.StyledMapType( featureOpts, styledMapOptions );
 
 		var imageActive = {
-				url: vdslMapScript.homeUrl + '/wp-content/plugins/localisation/includes/template/assets/img/pin-active.png', //TODOcustomize
+				url: vdslMapScript.pluginsUrl + '/includes/template/assets/img/pin-active.png', //TODOcustomize
                 size: new google.maps.Size( sizeX, sizeY ),
                 scaledSize: new google.maps.Size( sizeX, sizeY ),
                 anchor: new google.maps.Point( halfSizeX, sizeY )
@@ -258,7 +258,7 @@ jQuery(document).ready(function($) {
 
         function vdslResetPosition( position ) {
             var image = {
-                    url: vdslMapScript.homeUrl + vdslMapScript.pluginsUrl + '/includes/template/assets/img/localisation.png',
+                    url: vdslMapScript.pluginsUrl + '/includes/template/assets/img/localisation.png',
                     size: new google.maps.Size( sizeX, sizeY ),
                     scaledSize: new google.maps.Size( sizeX, sizeY ),
                     anchor: new google.maps.Point( halfSizeX, sizeY )

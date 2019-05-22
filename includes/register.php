@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return void
  */
 function vdsl_admin_styles_scripts() {
-	wp_enqueue_style( 'vdsl-admin-styles', plugins_url() . '/nabi-store-locator/assets/css/vdsl-admin.css', array(), '1.0.0' );
+	wp_enqueue_style( 'vdsl-admin-styles', plugins_url() . '/nabi-store-locator/includes/assets/css/vdsl-admin.css', array(), '1.0.0' );
 }
 add_action( 'admin_enqueue_scripts', 'vdsl_admin_styles_scripts' );
 

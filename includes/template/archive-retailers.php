@@ -6,10 +6,14 @@
  * @subpackage vdsl
  * @since vdsl 1.0
  */
+ 
+	$path = preg_replace('/wp-content.*$/','',__DIR__);
+	$blog_title = get_bloginfo( 'name' );
+	$mapsApiKey = get_option( 'maps_api_key' );
 ?>
 	<div class="vdslMap">
 		<div class="vdslLoading">
-			<img src="<?php echo plugins_url(); ?>/localisation/includes/template/assets/img/spinner.gif"> <!-- TODO customize: Img as SVG, so you can edit color -->
+			<img src="<?php echo $GLOBALS['pluginName']; ?>/includes/template/assets/img/spinner.gif"> <!-- TODO customize: Img as SVG, so you can edit color -->
 		</div>
 		<div id="vdslMapCanvas"></div> <!-- TODO customize: Edit Map height in the back-end -->
 	</div>
@@ -54,8 +58,7 @@
 			</div>
 		</div>
 	</div>
+	<link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['pluginName']; ?>/includes/template/assets/css/style.css" />
 
-	<link rel="stylesheet" type="text/css" href="<?php echo plugins_url(); ?>/localisation/includes/template/assets/css/style.css" />
-
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyBRo9WpA3mw9na-ORLvwrkfneOuh8i8wKM"></script> <!-- TODO: edit api key in admin-->
-	<script type="text/javascript" src="<?php echo plugins_url(); ?>/localisation/includes/template/assets/js/markercluster.js"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=<?php echo $mapsApiKey; ?>"></script> <!-- TODO: edit api key in admin-->
+	<script type="text/javascript" src="<?php echo $GLOBALS['pluginName']; ?>/includes/template/assets/js/markercluster.js"></script>

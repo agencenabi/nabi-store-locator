@@ -24,7 +24,7 @@ function vdsl_php_to_js() {
 		'site_title'    => get_bloginfo( 'name' ),
 		'ajaxUrl' 		=> admin_url('admin-ajax.php'),
 		'homeUrl'	 	=> home_url(),
-	    'pluginsUrl' 	=> plugins_url() . '/' . plugin_basename( __FILE__ ),
+	    'pluginsUrl' 	=> $GLOBALS['pluginName'],
 		'post_id'      	=> get_the_ID(),
 		'you'		   	=> __( 'You are here', 'vdsl' ),
 		'moreinfo'		=> __( 'More info »', 'vdsl' )
@@ -43,7 +43,7 @@ function vdsl_php_to_js() {
 	}
 
 	// Map Javascript
-	wp_enqueue_script('localisationmap','/wp-content/plugins/nabi-store-locator/includes/template/assets/js/map.js', array( 'jquery' ), '1.0.0', true );
+	wp_enqueue_script('localisationmap', $GLOBALS['pluginName'] . '/includes/template/assets/js/map.js', array( 'jquery' ), '1.0.0', true );
 	wp_localize_script('localisationmap', 'vdslMapScript', $vars);
 
 }
