@@ -27,7 +27,10 @@ function vdsl_php_to_js() {
 	    'pluginsUrl' 	=> $GLOBALS['pluginName'],
 		'post_id'      	=> get_the_ID(),
 		'you'		   	=> __( 'You are here', 'vdsl' ),
-		'moreinfo'		=> __( 'More info »', 'vdsl' )
+		'moreinfo'		=> __( 'More info »', 'vdsl' ),
+		'defaultPinImg'  => get_option( 'maps_pin_1' ),
+		'selectPinImg'   => get_option( 'maps_pin_2' ),
+		'clusterPinImg'  => get_option( 'maps_pin_3' ),
 	);
 
 	$vars['locate'] = ( isset( $_GET['locate'] ) || isset( $_GET['localisation'] ) ) ? true : false;
@@ -45,8 +48,25 @@ function vdsl_php_to_js() {
 	// Map Javascript
 	wp_enqueue_script('localisationmap', $GLOBALS['pluginName'] . '/includes/template/assets/js/map.js', array( 'jquery' ), '1.0.0', true );
 	wp_localize_script('localisationmap', 'vdslMapScript', $vars);
+	wp_enqueue_script('clustermap', $GLOBALS['pluginName'] . '/includes/template/assets/js/markercluster.js', array( 'jquery' ), '1.0.0', true );
 
 }
+
+function vdsl_admin_styles_scripts() {
+	$vars = array(
+		'mediaTitle'	 => __( 'Choose Pin', 'vdsl' ),
+		'mediaBtn'	 	 => __( 'Choose Pin', 'vdsl' ),
+	);
+
+	$vars['locate'] = ( isset( $_GET['locate'] ) || isset( $_GET['localisation'] ) ) ? true : false;
+	
+	wp_enqueue_style( 'vdsl-admin-styles', plugins_url() . '/nabi-store-locator/includes/assets/css/vdsl-admin.css', array(), '1.0.0' );
+	wp_enqueue_media();
+	wp_register_script( 'vdsl-admin-scripts', plugins_url('assets/js/vdsl-admin.js' , __FILE__ ), array('jquery'));
+    wp_enqueue_script('vdsl-admin-scripts');
+    wp_localize_script('vdsl-admin-scripts', 'vdslMapScript', $vars);
+}
+add_action( 'admin_enqueue_scripts', 'vdsl_admin_styles_scripts' );
 
 
 /**

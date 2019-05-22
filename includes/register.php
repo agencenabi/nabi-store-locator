@@ -12,38 +12,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 /**
- * Enqueue admin styles and scripts
- *
- * @return void
- */
-function vdsl_admin_styles_scripts() {
-	wp_enqueue_style( 'vdsl-admin-styles', plugins_url() . '/nabi-store-locator/includes/assets/css/vdsl-admin.css', array(), '1.0.0' );
-}
-add_action( 'admin_enqueue_scripts', 'vdsl_admin_styles_scripts' );
-
-
-/**
  * Register Stores post type
  *
  */
-add_action( 'init', 'vinedev_vdStores_init' );
+add_action( 'init', 'vdsl_vdStores_init' );
 
-function vinedev_vdStores_init() {
+function vdsl_vdStores_init() {
 	$labels = array(
-		'name'               => __( 'Stores', 'vinedev' ),
-		'singular_name'      => __( 'Store', 'vinedev' ),
-		'menu_name'          => __( 'Stores', 'vinedev' ),
-		'name_admin_bar'     => __( 'Stores', 'vinedev' ),
-		'add_new'            => __( 'Add New', 'vinedev' ),
-		'add_new_item'       => __( 'Add a New Store', 'vinedev' ),
-		'new_item'           => __( 'New Store', 'vinedev' ),
-		'edit_item'          => __( 'Edit the Store', 'vinedev' ),
-		'view_item'          => __( 'View Store', 'vinedev' ),
-		'all_items'          => __( 'All Stores', 'vinedev' ),
-		'search_items'       => __( 'Search a Store', 'vinedev' ),
-		'parent_item_colon'  => __( 'Parent Store', 'vinedev' ),
-		'not_found'          => __( 'No Store found', 'vinedev' ),
-		'not_found_in_trash' => __( 'No Store found in trash', 'vinedev' )
+		'name'               => __( 'Stores', 'vdsl' ),
+		'singular_name'      => __( 'Store', 'vdsl' ),
+		'menu_name'          => __( 'Stores', 'vdsl' ),
+		'name_admin_bar'     => __( 'Stores', 'vdsl' ),
+		'add_new'            => __( 'Add New', 'vdsl' ),
+		'add_new_item'       => __( 'Add a New Store', 'vdsl' ),
+		'new_item'           => __( 'New Store', 'vdsl' ),
+		'edit_item'          => __( 'Edit the Store', 'vdsl' ),
+		'view_item'          => __( 'View Store', 'vdsl' ),
+		'all_items'          => __( 'All Stores', 'vdsl' ),
+		'search_items'       => __( 'Search a Store', 'vdsl' ),
+		'parent_item_colon'  => __( 'Parent Store', 'vdsl' ),
+		'not_found'          => __( 'No Store found', 'vdsl' ),
+		'not_found_in_trash' => __( 'No Store found in trash', 'vdsl' )
 	);
 
 	$args = array(
@@ -56,7 +45,7 @@ function vinedev_vdStores_init() {
 		'show_in_nav_menus'   => false,
 		'show_in_admin_bar'   => true,
 		'query_var'           => true,
-		'rewrite'             => array( 'slug' => _x('stores', 'URL slug', 'vinedev'), 'with_front' => false ),
+		'rewrite'             => array( 'slug' => _x('stores', 'URL slug', 'vdsl'), 'with_front' => false ),
 		'capability_type'     => 'post',
 		'has_archive'         => false,
 		'hierarchical'        => false,
@@ -70,7 +59,7 @@ function vinedev_vdStores_init() {
 
 
 
-function vinedev_vdStores_taxonomies() {
+function vdsl_vdStores_taxonomies() {
 
 	// Retailer Type
 	$labels = array(
@@ -104,4 +93,4 @@ function vinedev_vdStores_taxonomies() {
 	register_taxonomy('specialites', array('vdStores'), $args);
 
 }
-add_action('init', 'vinedev_vdStores_taxonomies', 0);
+add_action('init', 'vdsl_vdStores_taxonomies', 0);

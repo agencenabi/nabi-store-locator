@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
-// create custom plugin settings menu
+// Create custom plugin settings menu
 add_action('admin_menu', 'vdsl_create_menu');
 
 function vdsl_create_menu() {
@@ -26,23 +26,31 @@ function vdsl_create_menu() {
 
 // register fields in WP Options (wp-admin/options.php)
 function register_vdsl_settings() {
-	
 	register_setting( 'vdsl-settings-group', 'maps_api_key' );
-	register_setting( 'vdsl-settings-group', 'logo_url' );
+	
+	// Tab #2
+	register_setting( 'vdsl-settings-group2', 'maps_pin_1' );
+	register_setting( 'vdsl-settings-group2', 'maps_pin_2' );
+	register_setting( 'vdsl-settings-group2', 'maps_pin_3' );
 }
 
+
+// Create Setting Page
 function vdsl_settings_page() {
 ?>
 <div class="wrap">
 	<h1><?php _e('Localisation Settings', 'vdsl'); ?></h1>
 
 	<div class="vdsl-tabs-nav">
-		<div class="active">
+		<div class="active tab1">
 			<?php _e('Settings', 'vdsl'); ?>
+		</div>
+		<div class="tab2">
+			<?php _e('Design', 'vdsl'); ?>
 		</div>
 	</div>
 	<div class="vdsl-tabs">
-		<div class="tabcontent1">
+		<div class="tab tab1">
 			<form method="post" action="options.php">
 			    <?php settings_fields( 'vdsl-settings-group' ); ?>
 			    <?php do_settings_sections( 'vdsl-settings-group' ); ?>
@@ -51,17 +59,48 @@ function vdsl_settings_page() {
 			        	<th scope="row"><?php _e('Google Maps API Key', 'vdsl'); ?></th>
 						<td><input type="text" name="maps_api_key" value="<?php echo esc_attr( get_option('maps_api_key') ); ?>" /></td>
 			        </tr>
-			        
-			        <input type="text" id="logo_url" name="theme_wptuts_options[logo]" value="<?php echo esc_url( $wptuts_options['logo'] ); ?>" />
-			        <input id="upload_logo_button" type="button" class="button" value="<?php _e( 'Upload Logo', 'wptuts' ); ?>" />
-			        <span class="description"><?php _e('Upload an image for the banner.', 'wptuts' ); ?></span>
-			        
 			    </table>
 			    <?php submit_button(); ?>
 			</form>
 		</div>
-		<div class="tabcontent2" style="display: none;">
-			<!-- Tabs #2 -->
+		<div class="tab tab2" style="display: none;">
+			<form method="post" action="options.php">
+				<table class="form-table">
+					<?php settings_fields( 'vdsl-settings-group2' ); ?>
+					<?php do_settings_sections( 'vdsl-settings-group2' ); ?>
+					<tr valign="top">
+			        	<th scope="row"><?php _e('Default Pin', 'vdsl'); ?></th>
+						<td>
+							<div class="vdsl_upload_wrap">
+								<img class="vdsl_upload_img" id="defaultpin_img" src="<?php echo esc_attr( get_option('maps_pin_1') ); ?>">
+							</div>
+							<input class="vdsl_upload_text" type="text" id="defaultpin_url" name="maps_pin_1" value="<?php echo esc_attr( get_option('maps_pin_1') ); ?>" style="display: none;" />
+					        <input id="vdsl_upload_button" type="button" class="vdsl_upload_button button" value="<?php _e( 'Upload', 'vdsl' ); ?>" />
+						</td>
+			        </tr>
+			        <tr valign="top">
+			        	<th scope="row"><?php _e('Selected Pin', 'vdsl'); ?></th>
+						<td>
+							<div class="vdsl_upload_wrap">
+								<img class="vdsl_upload_img" id="selectedpin_img" src="<?php echo esc_attr( get_option('maps_pin_2') ); ?>">
+							</div>
+							<input class="vdsl_upload_text" type="text" id="selectedpin_url" name="maps_pin_2" value="<?php echo esc_attr( get_option('maps_pin_2') ); ?>" style="display: none;" />
+					        <input id="vdsl_upload_button2" type="button" class="vdsl_upload_button button" value="<?php _e( 'Upload', 'vdsl' ); ?>" />
+						</td>
+			        </tr>
+			        <tr valign="top">
+			        	<th scope="row"><?php _e('Cluster Pin', 'vdsl'); ?></th>
+						<td>
+							<div class="vdsl_upload_wrap">
+								<img class="vdsl_upload_img" id="clusterpin_img" src="<?php echo esc_attr( get_option('maps_pin_3') ); ?>">
+							</div>
+							<input class="vdsl_upload_text" type="text" id="clusterpin_url" name="maps_pin_3" value="<?php echo esc_attr( get_option('maps_pin_3') ); ?>" style="display: none;" />
+					        <input id="vdsl_upload_button3" type="button" class="vdsl_upload_button button" value="<?php _e( 'Upload', 'vdsl' ); ?>" />
+						</td>
+			        </tr>
+			    </table>
+			    <?php submit_button(); ?>
+			</form>
 		</div>
 	</div>
 </div>

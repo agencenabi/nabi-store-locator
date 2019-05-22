@@ -12,10 +12,15 @@ jQuery(document).ready(function($) {
     }
 
     function vdslGoogleMap() {
+	    
+	    var clusterPinImg = vdslMapScript.clusterPinImg;
+		if (clusterPinImg == '') {
+			clusterPinImg = vdslMapScript.pluginsUrl + '/includes/template/assets/img/pin-cluster.png';
+		}
 
 	    var clusterStyles = [{
 		    textColor: 'white',
-		    url: vdslMapScript.pluginsUrl + '/includes/template/assets/img/m1.png', //TODOcustomize
+		    url: clusterPinImg,
 		    height: 53,
 		    width: 53
 		}];
@@ -74,12 +79,23 @@ jQuery(document).ready(function($) {
         map = new google.maps.Map( document.getElementById( 'vdslMapCanvas' ), mapOptions );
 
 		var mcOptions = {
-		    styles: clusterStyles, // TODO customize: Change image in back-end
+		    styles: clusterStyles,
 		};
-        //markers_clusters = new MarkerClusterer(map, [], mcOptions); // TODO: Fix cluster, add an option to turn on and off.
-
+        markers_clusters = new MarkerClusterer(map, [], mcOptions); // TODO: Fix cluster, add an option to turn on and off.
+		
+		// Get Pins from Admin. Else, use default pins.
+		var defaultPin = vdslMapScript.defaultPinImg;
+		if (defaultPin == '') {
+			defaultPin = vdslMapScript.pluginsUrl + '/includes/template/assets/img/pin.png';
+		}
+		
+		var selectPin = vdslMapScript.selectPinImg;
+		if (selectPin == '') {
+			selectPin = vdslMapScript.pluginsUrl + '/includes/template/assets/img/pin-active.png';
+		}
+		
         var image = {
-	        	url: vdslMapScript.pluginsUrl + '/includes/template/assets/img/pin.png', //TODOcustomize
+	        	url: defaultPin,
                 size: new google.maps.Size( sizeX, sizeY ),
                 scaledSize: new google.maps.Size( sizeX, sizeY ),
                 anchor: new google.maps.Point( halfSizeX, sizeY )
@@ -92,7 +108,7 @@ jQuery(document).ready(function($) {
             customMapType = new google.maps.StyledMapType( featureOpts, styledMapOptions );
 
 		var imageActive = {
-				url: vdslMapScript.pluginsUrl + '/includes/template/assets/img/pin-active.png', //TODOcustomize
+				url: selectPin,
                 size: new google.maps.Size( sizeX, sizeY ),
                 scaledSize: new google.maps.Size( sizeX, sizeY ),
                 anchor: new google.maps.Point( halfSizeX, sizeY )
@@ -387,7 +403,7 @@ jQuery(document).ready(function($) {
 
             element.marker.set( 'marker_id', element._id );
 
-			// markers_clusters.addMarker(element.marker); // TODO: Fix cluster, add an option to turn on and off.
+			markers_clusters.addMarker(element.marker); // TODO: Fix cluster, add an option to turn on and off.
 
             markers.push( element.marker );
 
